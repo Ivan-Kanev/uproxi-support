@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="bg">
+<html lang="bg" data-lang="bg">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,14 +9,12 @@
     :root{
       --bg:#070A12;
       --bg2:#0B1020;
-      --card: rgba(255,255,255,.06);
       --border: rgba(255,255,255,.10);
       --text:#E9ECF5;
       --muted: rgba(233,236,245,.68);
       --radius: 26px;
       --shadow: 0 40px 90px rgba(0,0,0,.55);
     }
-
     *{ box-sizing:border-box; }
     body{
       margin:0;
@@ -27,7 +25,6 @@
         radial-gradient(900px 500px at 85% 15%, rgba(16,185,129,.12), transparent 62%),
         linear-gradient(180deg, var(--bg), var(--bg2));
     }
-
     header{
       max-width:1200px;
       margin:0 auto;
@@ -35,24 +32,41 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
+      gap:14px;
     }
+    nav{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
     nav a{
       text-decoration:none;
       color:var(--muted);
       font-weight:600;
-      margin-left:16px;
       padding:10px 12px;
       border-radius:12px;
       transition:.25s ease;
     }
     nav a:hover{ color:var(--text); background: rgba(255,255,255,.06); }
 
+    .lang-btn{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: rgba(233,236,245,.85);
+      padding:10px 12px;
+      border-radius:12px;
+      font-weight:700;
+      cursor:pointer;
+      transition:.25s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+    .lang-btn:hover{ background: rgba(255,255,255,.09); transform: translateY(-1px); }
+    .lang-dot{ width:8px; height:8px; border-radius:999px; background: rgba(59,130,246,.9); box-shadow: 0 0 0 4px rgba(59,130,246,.16); }
+
     .container{
       max-width:920px;
       margin:0 auto;
       padding:72px 20px 100px;
     }
-
     .card{
       background: rgba(255,255,255,.05);
       border:1px solid rgba(255,255,255,.10);
@@ -60,7 +74,6 @@
       padding:42px;
       box-shadow: var(--shadow);
     }
-
     h1{ margin:0 0 14px; font-size:40px; letter-spacing:-.4px; }
     p{ margin:0 0 14px; color:var(--muted); line-height:1.75; font-size:16.5px; }
 
@@ -80,52 +93,95 @@
       color:rgba(233,236,245,.55);
       border-top:1px solid rgba(255,255,255,.06);
     }
-
     .reveal{ opacity:0; transform:translateY(28px); transition:1s ease; }
     .reveal.active{ opacity:1; transform:translateY(0); }
   </style>
 </head>
 
 <body>
-  <header>
-    <strong>UProxi</strong>
-    <nav>
-      <a href="index.html">Начало</a>
-      <a href="support.html">Поддръжка</a>
-      <a href="privacy.html">Поверителност</a>
-    </nav>
-  </header>
+<header>
+  <strong>UProxi</strong>
+  <nav>
+    <a href="index.html" data-i18n="nav_home">Начало</a>
+    <a href="support.html" data-i18n="nav_support">Поддръжка</a>
+    <a href="privacy.html" data-i18n="nav_privacy">Поверителност</a>
 
-  <main class="container">
-    <div class="card reveal">
-      <h1>Поддръжка</h1>
+    <button class="lang-btn" id="langToggle" type="button">
+      <span class="lang-dot"></span>
+      <span id="langLabel">EN</span>
+    </button>
+  </nav>
+</header>
 
-      <p>
-        UProxi е създадено да бъде бързо, ясно и ненатрапчиво. Ако имаш въпроси,
-        проблем или идея за нова функция — пиши ми.
-      </p>
+<main class="container">
+  <div class="card reveal">
+    <h1 data-i18n="title">Поддръжка</h1>
 
-      <p>
-        Важно: Приложението е оптимизирано за България и работи с поддържани български вериги/обекти.
-      </p>
+    <p data-i18n="p1">
+      UProxi е създадено да бъде бързо, ясно и ненатрапчиво. Ако имаш въпроси, проблем или идея за нова функция — пиши ми.
+    </p>
 
-      <div class="contact">
-        📩 Email за контакт:<br>
-        <strong>ikanev@icloud.com</strong>
-      </div>
+    <p data-i18n="p2">
+      Важно: Приложението е оптимизирано за България и работи с поддържани български вериги/обекти.
+    </p>
+
+    <div class="contact">
+      <span data-i18n="email_label">📩 Email за контакт:</span><br>
+      <strong>ikanev@icloud.com</strong>
     </div>
-  </main>
+  </div>
+</main>
 
-  <footer>
-    © 2026 UProxi
-  </footer>
+<footer>© 2026 UProxi</footer>
 
-  <script>
-    const el = document.querySelector('.reveal');
-    const obs = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('active'); });
-    },{threshold:0.15});
-    obs.observe(el);
-  </script>
+<script>
+  const I18N = {
+    bg: {
+      nav_home:"Начало",
+      nav_support:"Поддръжка",
+      nav_privacy:"Поверителност",
+      title:"Поддръжка",
+      p1:"UProxi е създадено да бъде бързо, ясно и ненатрапчиво. Ако имаш въпроси, проблем или идея за нова функция — пиши ми.",
+      p2:"Важно: Приложението е оптимизирано за България и работи с поддържани български вериги/обекти.",
+      email_label:"📩 Email за контакт:"
+    },
+    en: {
+      nav_home:"Home",
+      nav_support:"Support",
+      nav_privacy:"Privacy",
+      title:"Support",
+      p1:"UProxi is built to be fast, clear, and unobtrusive. If you have questions, issues, or feature ideas — contact me.",
+      p2:"Note: The app is currently optimized for Bulgaria and supports only selected Bulgarian chains/locations.",
+      email_label:"📩 Contact email:"
+    }
+  };
+
+  function setLang(lang){
+    const dict = I18N[lang] || I18N.bg;
+    document.documentElement.lang = lang;
+    document.documentElement.dataset.lang = lang;
+
+    document.querySelectorAll("[data-i18n]").forEach(el=>{
+      const key = el.getAttribute("data-i18n");
+      if(dict[key]) el.textContent = dict[key];
+    });
+
+    document.getElementById("langLabel").textContent = (lang === "bg") ? "EN" : "BG";
+    localStorage.setItem("uproxi_lang", lang);
+  }
+
+  document.getElementById("langToggle").addEventListener("click", ()=>{
+    const cur = localStorage.getItem("uproxi_lang") || "bg";
+    setLang(cur === "bg" ? "en" : "bg");
+  });
+
+  setLang(localStorage.getItem("uproxi_lang") || "bg");
+
+  const el = document.querySelector('.reveal');
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('active'); });
+  },{threshold:0.15});
+  obs.observe(el);
+</script>
 </body>
 </html>
