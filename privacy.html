@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="bg">
+<html lang="bg" data-lang="bg">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,14 +9,11 @@
     :root{
       --bg:#070A12;
       --bg2:#0B1020;
-      --card: rgba(255,255,255,.06);
-      --border: rgba(255,255,255,.10);
       --text:#E9ECF5;
       --muted: rgba(233,236,245,.68);
       --radius: 28px;
       --shadow: 0 40px 110px rgba(0,0,0,.55);
     }
-
     *{ box-sizing:border-box; }
     body{
       margin:0;
@@ -29,7 +26,6 @@
         linear-gradient(180deg, var(--bg), var(--bg2));
       overflow-x:hidden;
     }
-
     header{
       max-width:1200px;
       margin:0 auto;
@@ -37,17 +33,35 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
+      gap:14px;
     }
+    nav{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
     nav a{
       text-decoration:none;
       color:var(--muted);
       font-weight:600;
-      margin-left:16px;
       padding:10px 12px;
       border-radius:12px;
       transition:.25s ease;
     }
     nav a:hover{ color:var(--text); background: rgba(255,255,255,.06); }
+
+    .lang-btn{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: rgba(233,236,245,.85);
+      padding:10px 12px;
+      border-radius:12px;
+      font-weight:700;
+      cursor:pointer;
+      transition:.25s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+    .lang-btn:hover{ background: rgba(255,255,255,.09); transform: translateY(-1px); }
+    .lang-dot{ width:8px; height:8px; border-radius:999px; background: rgba(59,130,246,.9); box-shadow: 0 0 0 4px rgba(59,130,246,.16); }
 
     .container{
       max-width:960px;
@@ -61,21 +75,9 @@
       padding:44px;
       box-shadow: var(--shadow);
     }
-    h1{
-      margin:0 0 14px;
-      font-size:42px;
-      letter-spacing:-.4px;
-    }
-    h2{
-      margin:34px 0 12px;
-      font-size:22px;
-      letter-spacing:-.2px;
-    }
-    p, li{
-      color:var(--muted);
-      line-height:1.75;
-      font-size:16.5px;
-    }
+    h1{ margin:0 0 14px; font-size:42px; letter-spacing:-.4px; }
+    h2{ margin:34px 0 12px; font-size:22px; letter-spacing:-.2px; }
+    p, li{ color:var(--muted); line-height:1.75; font-size:16.5px; }
     ul{ padding-left:20px; margin:12px 0 0; }
 
     .note{
@@ -88,87 +90,150 @@
       font-size:14.8px;
       line-height:1.6;
     }
-
     footer{
       text-align:center;
       padding:56px 20px;
       color:rgba(233,236,245,.55);
       border-top:1px solid rgba(255,255,255,.06);
     }
-
     .reveal{ opacity:0; transform:translateY(28px); transition:1s ease; }
     .reveal.active{ opacity:1; transform:translateY(0); }
   </style>
 </head>
 
 <body>
-  <header>
-    <strong>UProxi</strong>
-    <nav>
-      <a href="index.html">Начало</a>
-      <a href="support.html">Поддръжка</a>
-      <a href="privacy.html">Поверителност</a>
-    </nav>
-  </header>
+<header>
+  <strong>UProxi</strong>
+  <nav>
+    <a href="index.html" data-i18n="nav_home">Начало</a>
+    <a href="support.html" data-i18n="nav_support">Поддръжка</a>
+    <a href="privacy.html" data-i18n="nav_privacy">Поверителност</a>
 
-  <div class="container">
-    <div class="card reveal">
-      <h1>Политика за поверителност</h1>
+    <button class="lang-btn" id="langToggle" type="button">
+      <span class="lang-dot"></span>
+      <span id="langLabel">EN</span>
+    </button>
+  </nav>
+</header>
 
-      <p>
-        UProxi уважава поверителността ви. Приложението е създадено да работи локално
-        на устройството и не събира лични данни.
-      </p>
+<div class="container">
+  <div class="card reveal">
+    <h1 data-i18n="t1">Политика за поверителност</h1>
 
-      <h2>Събиране на данни</h2>
-      <p>
-        UProxi <strong>не</strong> събира, съхранява или изпраща лични данни към външни сървъри.
-      </p>
-      <ul>
-        <li>Без потребителски акаунти</li>
-        <li>Без реклами</li>
-        <li>Без външни tracking/analytics SDK</li>
-        <li>Данните за карти се съхраняват локално и защитено (напр. Keychain)</li>
-      </ul>
+    <p data-i18n="p_intro">
+      UProxi уважава поверителността ви. Приложението е създадено да работи локално на устройството и не събира лични данни.
+    </p>
 
-      <h2>Локация</h2>
-      <p>
-        Локацията се използва единствено за основната функционалност:
-        подсказване/показване на подходяща клиентска карта при близост до поддържан обект.
-      </p>
-      <div class="note">
-        Локационните изчисления се извършват на устройството. Не изпращаме локация към сървъри
-        и не я споделяме с трети страни.
-      </div>
+    <h2 data-i18n="h_collect">Събиране на данни</h2>
+    <p data-i18n="p_collect">
+      UProxi не събира, съхранява или изпраща лични данни към външни сървъри.
+    </p>
+    <ul>
+      <li data-i18n="li1">Без потребителски акаунти</li>
+      <li data-i18n="li2">Без реклами</li>
+      <li data-i18n="li3">Без външни tracking/analytics SDK</li>
+      <li data-i18n="li4">Данните за карти се съхраняват локално и защитено (напр. Keychain)</li>
+    </ul>
 
-      <h2>In-App Purchase (UProxi Pro)</h2>
-      <p>
-        UProxi Pro е еднократна покупка (non-consumable), която отключва неограничен брой карти.
-        Управлението на плащанията се извършва от Apple чрез App Store.
-      </p>
-
-      <h2>Промени</h2>
-      <p>
-        Ако обновим тази политика, ще публикуваме промените на тази страница.
-      </p>
-
-      <h2>Контакт</h2>
-      <p>
-        При въпроси: <strong>ikanev@icloud.com</strong>
-      </p>
+    <h2 data-i18n="h_loc">Локация</h2>
+    <p data-i18n="p_loc">
+      Локацията се използва единствено за основната функционалност: подсказване/показване на подходяща клиентска карта при близост до поддържан обект.
+    </p>
+    <div class="note" data-i18n="note_loc">
+      Локационните изчисления се извършват на устройството. Не изпращаме локация към сървъри и не я споделяме с трети страни.
     </div>
+
+    <h2 data-i18n="h_iap">In-App Purchase (UProxi Pro)</h2>
+    <p data-i18n="p_iap">
+      UProxi Pro е еднократна покупка (non-consumable), която отключва неограничен брой карти. Управлението на плащанията се извършва от Apple чрез App Store.
+    </p>
+
+    <h2 data-i18n="h_changes">Промени</h2>
+    <p data-i18n="p_changes">
+      Ако обновим тази политика, ще публикуваме промените на тази страница.
+    </p>
+
+    <h2 data-i18n="h_contact">Контакт</h2>
+    <p><span data-i18n="p_contact">При въпроси:</span> <strong>ikanev@icloud.com</strong></p>
   </div>
+</div>
 
-  <footer>
-    © 2026 UProxi
-  </footer>
+<footer>© 2026 UProxi</footer>
 
-  <script>
-    const el = document.querySelector('.reveal');
-    const obs = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('active'); });
-    },{threshold:0.15});
-    obs.observe(el);
-  </script>
+<script>
+  const I18N = {
+    bg: {
+      nav_home:"Начало",
+      nav_support:"Поддръжка",
+      nav_privacy:"Поверителност",
+      t1:"Политика за поверителност",
+      p_intro:"UProxi уважава поверителността ви. Приложението е създадено да работи локално на устройството и не събира лични данни.",
+      h_collect:"Събиране на данни",
+      p_collect:"UProxi не събира, съхранява или изпраща лични данни към външни сървъри.",
+      li1:"Без потребителски акаунти",
+      li2:"Без реклами",
+      li3:"Без външни tracking/analytics SDK",
+      li4:"Данните за карти се съхраняват локално и защитено (напр. Keychain)",
+      h_loc:"Локация",
+      p_loc:"Локацията се използва единствено за основната функционалност: подсказване/показване на подходяща клиентска карта при близост до поддържан обект.",
+      note_loc:"Локационните изчисления се извършват на устройството. Не изпращаме локация към сървъри и не я споделяме с трети страни.",
+      h_iap:"In-App Purchase (UProxi Pro)",
+      p_iap:"UProxi Pro е еднократна покупка (non-consumable), която отключва неограничен брой карти. Управлението на плащанията се извършва от Apple чрез App Store.",
+      h_changes:"Промени",
+      p_changes:"Ако обновим тази политика, ще публикуваме промените на тази страница.",
+      h_contact:"Контакт",
+      p_contact:"При въпроси:"
+    },
+    en: {
+      nav_home:"Home",
+      nav_support:"Support",
+      nav_privacy:"Privacy",
+      t1:"Privacy Policy",
+      p_intro:"UProxi respects your privacy. The app is designed to work locally on your device and does not collect personal data.",
+      h_collect:"Data collection",
+      p_collect:"UProxi does not collect, store, or send personal data to external servers.",
+      li1:"No user accounts",
+      li2:"No ads",
+      li3:"No third-party tracking/analytics SDKs",
+      li4:"Card data is stored locally and securely (e.g., Keychain)",
+      h_loc:"Location",
+      p_loc:"Location is used only for the core feature: suggesting/showing the relevant loyalty card when you are near a supported location.",
+      note_loc:"All location calculations are done on-device. We do not send location to servers and do not share it with third parties.",
+      h_iap:"In-App Purchase (UProxi Pro)",
+      p_iap:"UProxi Pro is a one-time (non-consumable) purchase that unlocks unlimited cards. Payments are handled by Apple via the App Store.",
+      h_changes:"Changes",
+      p_changes:"If we update this policy, we will publish the changes on this page.",
+      h_contact:"Contact",
+      p_contact:"Questions:"
+    }
+  };
+
+  function setLang(lang){
+    const dict = I18N[lang] || I18N.bg;
+    document.documentElement.lang = lang;
+    document.documentElement.dataset.lang = lang;
+
+    document.querySelectorAll("[data-i18n]").forEach(el=>{
+      const key = el.getAttribute("data-i18n");
+      if(dict[key]) el.textContent = dict[key];
+    });
+
+    document.getElementById("langLabel").textContent = (lang === "bg") ? "EN" : "BG";
+    localStorage.setItem("uproxi_lang", lang);
+  }
+
+  document.getElementById("langToggle").addEventListener("click", ()=>{
+    const cur = localStorage.getItem("uproxi_lang") || "bg";
+    setLang(cur === "bg" ? "en" : "bg");
+  });
+
+  setLang(localStorage.getItem("uproxi_lang") || "bg");
+
+  const el = document.querySelector('.reveal');
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('active'); });
+  },{threshold:0.15});
+  obs.observe(el);
+</script>
 </body>
 </html>
