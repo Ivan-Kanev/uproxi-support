@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Политика за поверителност – UProxi</title>
+
+  <style>
+    :root{
+      --bg:#070A12;
+      --bg2:#0B1020;
+      --card: rgba(255,255,255,.06);
+      --border: rgba(255,255,255,.10);
+      --text:#E9ECF5;
+      --muted: rgba(233,236,245,.68);
+      --radius: 28px;
+      --shadow: 0 40px 110px rgba(0,0,0,.55);
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,system-ui,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 500px at 18% -10%, rgba(59,130,246,.18), transparent 60%),
+        radial-gradient(900px 500px at 85% 12%, rgba(16,185,129,.12), transparent 62%),
+        radial-gradient(700px 420px at 50% 120%, rgba(168,85,247,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      overflow-x:hidden;
+    }
+
+    header{
+      max-width:1200px;
+      margin:0 auto;
+      padding:22px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    nav a{
+      text-decoration:none;
+      color:var(--muted);
+      font-weight:600;
+      margin-left:16px;
+      padding:10px 12px;
+      border-radius:12px;
+      transition:.25s ease;
+    }
+    nav a:hover{ color:var(--text); background: rgba(255,255,255,.06); }
+
+    .container{
+      max-width:960px;
+      margin:0 auto;
+      padding:62px 20px 110px;
+    }
+    .card{
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      padding:44px;
+      box-shadow: var(--shadow);
+    }
+    h1{
+      margin:0 0 14px;
+      font-size:42px;
+      letter-spacing:-.4px;
+    }
+    h2{
+      margin:34px 0 12px;
+      font-size:22px;
+      letter-spacing:-.2px;
+    }
+    p, li{
+      color:var(--muted);
+      line-height:1.75;
+      font-size:16.5px;
+    }
+    ul{ padding-left:20px; margin:12px 0 0; }
+
+    .note{
+      margin-top:18px;
+      padding:16px 18px;
+      border-radius:18px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      color: rgba(233,236,245,.75);
+      font-size:14.8px;
+      line-height:1.6;
+    }
+
+    footer{
+      text-align:center;
+      padding:56px 20px;
+      color:rgba(233,236,245,.55);
+      border-top:1px solid rgba(255,255,255,.06);
+    }
+
+    .reveal{ opacity:0; transform:translateY(28px); transition:1s ease; }
+    .reveal.active{ opacity:1; transform:translateY(0); }
+  </style>
+</head>
+
+<body>
+  <header>
+    <strong>UProxi</strong>
+    <nav>
+      <a href="index.html">Начало</a>
+      <a href="support.html">Поддръжка</a>
+      <a href="privacy.html">Поверителност</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="card reveal">
+      <h1>Политика за поверителност</h1>
+
+      <p>
+        UProxi уважава поверителността ви. Приложението е създадено да работи локално
+        на устройството и не събира лични данни.
+      </p>
+
+      <h2>Събиране на данни</h2>
+      <p>
+        UProxi <strong>не</strong> събира, съхранява или изпраща лични данни към външни сървъри.
+      </p>
+      <ul>
+        <li>Без потребителски акаунти</li>
+        <li>Без реклами</li>
+        <li>Без външни tracking/analytics SDK</li>
+        <li>Данните за карти се съхраняват локално и защитено (напр. Keychain)</li>
+      </ul>
+
+      <h2>Локация</h2>
+      <p>
+        Локацията се използва единствено за основната функционалност:
+        подсказване/показване на подходяща клиентска карта при близост до поддържан обект.
+      </p>
+      <div class="note">
+        Локационните изчисления се извършват на устройството. Не изпращаме локация към сървъри
+        и не я споделяме с трети страни.
+      </div>
+
+      <h2>In-App Purchase (UProxi Pro)</h2>
+      <p>
+        UProxi Pro е еднократна покупка (non-consumable), която отключва неограничен брой карти.
+        Управлението на плащанията се извършва от Apple чрез App Store.
+      </p>
+
+      <h2>Промени</h2>
+      <p>
+        Ако обновим тази политика, ще публикуваме промените на тази страница.
+      </p>
+
+      <h2>Контакт</h2>
+      <p>
+        При въпроси: <strong>ikanev@icloud.com</strong>
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 UProxi
+  </footer>
+
+  <script>
+    const el = document.querySelector('.reveal');
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('active'); });
+    },{threshold:0.15});
+    obs.observe(el);
+  </script>
+</body>
+</html>
