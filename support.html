@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Поддръжка – UProxi</title>
+
+  <style>
+    :root{
+      --bg:#070A12;
+      --bg2:#0B1020;
+      --card: rgba(255,255,255,.06);
+      --border: rgba(255,255,255,.10);
+      --text:#E9ECF5;
+      --muted: rgba(233,236,245,.68);
+      --radius: 26px;
+      --shadow: 0 40px 90px rgba(0,0,0,.55);
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,system-ui,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 500px at 20% -10%, rgba(59,130,246,.18), transparent 60%),
+        radial-gradient(900px 500px at 85% 15%, rgba(16,185,129,.12), transparent 62%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+    }
+
+    header{
+      max-width:1200px;
+      margin:0 auto;
+      padding:22px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    nav a{
+      text-decoration:none;
+      color:var(--muted);
+      font-weight:600;
+      margin-left:16px;
+      padding:10px 12px;
+      border-radius:12px;
+      transition:.25s ease;
+    }
+    nav a:hover{ color:var(--text); background: rgba(255,255,255,.06); }
+
+    .container{
+      max-width:920px;
+      margin:0 auto;
+      padding:72px 20px 100px;
+    }
+
+    .card{
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      padding:42px;
+      box-shadow: var(--shadow);
+    }
+
+    h1{ margin:0 0 14px; font-size:40px; letter-spacing:-.4px; }
+    p{ margin:0 0 14px; color:var(--muted); line-height:1.75; font-size:16.5px; }
+
+    .contact{
+      margin-top:26px;
+      padding:18px 18px;
+      border-radius:18px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      font-weight:650;
+    }
+    .contact strong{ color:var(--text); }
+
+    footer{
+      text-align:center;
+      padding:56px 20px;
+      color:rgba(233,236,245,.55);
+      border-top:1px solid rgba(255,255,255,.06);
+    }
+
+    .reveal{ opacity:0; transform:translateY(28px); transition:1s ease; }
+    .reveal.active{ opacity:1; transform:translateY(0); }
+  </style>
+</head>
+
+<body>
+  <header>
+    <strong>UProxi</strong>
+    <nav>
+      <a href="index.html">Начало</a>
+      <a href="support.html">Поддръжка</a>
+      <a href="privacy.html">Поверителност</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="card reveal">
+      <h1>Поддръжка</h1>
+
+      <p>
+        UProxi е създадено да бъде бързо, ясно и ненатрапчиво. Ако имаш въпроси,
+        проблем или идея за нова функция — пиши ми.
+      </p>
+
+      <p>
+        Важно: Приложението е оптимизирано за България и работи с поддържани български вериги/обекти.
+      </p>
+
+      <div class="contact">
+        📩 Email за контакт:<br>
+        <strong>ikanev@icloud.com</strong>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2026 UProxi
+  </footer>
+
+  <script>
+    const el = document.querySelector('.reveal');
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('active'); });
+    },{threshold:0.15});
+    obs.observe(el);
+  </script>
+</body>
+</html>
