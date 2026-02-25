@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="bg">
+<html lang="bg" data-lang="bg">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,14 +10,12 @@
       --bg:#070A12;
       --bg2:#0B1020;
       --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.08);
       --border: rgba(255,255,255,.10);
       --text:#E9ECF5;
       --muted: rgba(233,236,245,.68);
       --radius: 28px;
       --shadow: 0 50px 120px rgba(0,0,0,.55);
     }
-
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
 
@@ -32,94 +30,87 @@
         linear-gradient(180deg, var(--bg), var(--bg2));
       overflow-x:hidden;
     }
-
     a{ color:inherit; }
 
     header{
-      position:sticky;
-      top:0;
-      z-index:50;
+      position:sticky; top:0; z-index:50;
       backdrop-filter: blur(14px);
       background: linear-gradient(180deg, rgba(7,10,18,.72), rgba(7,10,18,.35));
       border-bottom:1px solid rgba(255,255,255,.06);
     }
     .topbar{
-      max-width:1200px;
-      margin:0 auto;
-      padding:18px 20px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
+      max-width:1200px; margin:0 auto; padding:18px 20px;
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
     }
     .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      font-weight:800;
-      letter-spacing:.2px;
+      display:flex; align-items:center; gap:12px;
+      font-weight:800; letter-spacing:.2px;
     }
     .brand-badge{
-      width:34px;
-      height:34px;
-      border-radius:12px;
+      width:34px; height:34px; border-radius:12px;
       background: rgba(255,255,255,.08);
       border:1px solid rgba(255,255,255,.10);
-      display:grid;
-      place-items:center;
+      display:grid; place-items:center;
       box-shadow: 0 18px 40px rgba(0,0,0,.35);
     }
+    nav{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
     nav a{
       text-decoration:none;
       color:var(--muted);
       font-weight:600;
-      margin-left:18px;
       padding:10px 12px;
       border-radius:12px;
       transition:.25s ease;
     }
-    nav a:hover{
-      color:var(--text);
+    nav a:hover{ color:var(--text); background: rgba(255,255,255,.06); }
+
+    .lang-btn{
+      border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.06);
+      color: rgba(233,236,245,.85);
+      padding:10px 12px;
+      border-radius:12px;
+      font-weight:700;
+      cursor:pointer;
+      transition:.25s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+    .lang-btn:hover{ background: rgba(255,255,255,.09); transform: translateY(-1px); }
+    .lang-dot{
+      width:8px; height:8px; border-radius:999px;
+      background: rgba(59,130,246,.9);
+      box-shadow: 0 0 0 4px rgba(59,130,246,.16);
     }
 
     .hero{
-      max-width:1200px;
-      margin:0 auto;
+      max-width:1200px; margin:0 auto;
       padding:78px 20px 40px;
-      display:grid;
-      grid-template-columns: 1.05fr 1fr;
-      gap:54px;
-      align-items:center;
+      display:grid; grid-template-columns: 1.05fr 1fr;
+      gap:54px; align-items:center;
     }
     .hero h1{
-      font-size:62px;
-      line-height:1.03;
-      margin:0 0 18px;
-      letter-spacing:-.8px;
+      font-size:62px; line-height:1.03;
+      margin:0 0 18px; letter-spacing:-.8px;
     }
     .hero p{
       margin:0;
-      font-size:19px;
-      line-height:1.65;
-      color:var(--muted);
-      max-width:560px;
+      font-size:19px; line-height:1.65;
+      color:var(--muted); max-width:560px;
     }
     .hero .pill{
       margin-top:18px;
-      display:inline-flex;
-      gap:10px;
-      align-items:center;
-      padding:10px 14px;
-      border-radius:999px;
+      display:inline-flex; gap:10px; align-items:center;
+      padding:10px 14px; border-radius:999px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.05);
       color: rgba(233,236,245,.78);
-      font-weight:650;
-      font-size:13px;
-      letter-spacing:.2px;
+      font-weight:650; font-size:13px; letter-spacing:.2px;
     }
 
-    /* APP STORE BUTTON — 1:1 with your old template */
+    /* APP STORE BUTTON — keep 1:1 */
     .store-btn {
       margin-top:28px;
       display:inline-flex;
@@ -134,9 +125,7 @@
       box-shadow:0 20px 40px rgba(0,0,0,.25);
       transition:.3s ease;
     }
-    .store-btn:hover {
-      transform:translateY(-3px) scale(1.02);
-    }
+    .store-btn:hover { transform:translateY(-3px) scale(1.02); }
 
     .hero-image{
       border-radius: var(--radius);
@@ -146,26 +135,14 @@
       box-shadow: var(--shadow);
       animation: float 6s ease-in-out infinite;
     }
-    .hero-image img{
-      width:100%;
-      border-radius:22px;
-      display:block;
-    }
-    @keyframes float{
-      0%,100%{ transform:translateY(0); }
-      50%{ transform:translateY(-12px); }
-    }
+    .hero-image img{ width:100%; border-radius:22px; display:block; }
+    @keyframes float{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-12px); } }
 
     .section{
-      max-width:1200px;
-      margin:0 auto;
+      max-width:1200px; margin:0 auto;
       padding:70px 20px 100px;
     }
-    .section h2{
-      font-size:36px;
-      margin:0 0 24px;
-      letter-spacing:-.4px;
-    }
+    .section h2{ font-size:36px; margin:0 0 24px; letter-spacing:-.4px; }
     .sub{
       color:var(--muted);
       margin:0 0 36px;
@@ -174,12 +151,7 @@
       font-size:16.5px;
     }
 
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap:22px;
-    }
-
+    .grid{ display:grid; grid-template-columns: repeat(12, 1fr); gap:22px; }
     .feature{
       grid-column: span 4;
       border-radius:24px;
@@ -190,23 +162,9 @@
       transition:.35s ease;
     }
     .feature:hover{ transform: translateY(-8px); background: rgba(255,255,255,.07); }
-    .feature img{
-      width:100%;
-      border-radius:18px;
-      display:block;
-      margin-bottom:14px;
-    }
-    .feature h3{
-      margin:0 0 8px;
-      font-size:18.5px;
-      letter-spacing:-.2px;
-    }
-    .feature p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.6;
-      font-size:14.8px;
-    }
+    .feature img{ width:100%; border-radius:18px; display:block; margin-bottom:14px; }
+    .feature h3{ margin:0 0 8px; font-size:18.5px; letter-spacing:-.2px; }
+    .feature p{ margin:0; color:var(--muted); line-height:1.6; font-size:14.8px; }
 
     .wide{
       grid-column: span 12;
@@ -218,9 +176,7 @@
 
     .cta{
       margin-top:50px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
+      display:flex; align-items:center; justify-content:space-between;
       gap:18px;
       padding:22px 22px;
       border-radius:24px;
@@ -228,17 +184,8 @@
       border:1px solid rgba(255,255,255,.10);
       box-shadow: 0 26px 80px rgba(0,0,0,.45);
     }
-    .cta strong{
-      font-size:18px;
-      letter-spacing:-.2px;
-    }
-    .cta span{
-      display:block;
-      color:var(--muted);
-      margin-top:4px;
-      font-size:14.8px;
-      line-height:1.45;
-    }
+    .cta strong{ font-size:18px; letter-spacing:-.2px; }
+    .cta span{ display:block; color:var(--muted); margin-top:4px; font-size:14.8px; line-height:1.45; }
 
     footer{
       text-align:center;
@@ -247,17 +194,8 @@
       border-top:1px solid rgba(255,255,255,.06);
     }
 
-    /* Reveal animations (same spirit as your old pages) */
-    .reveal{
-      opacity:0;
-      transform:translateY(34px);
-      transition: 1s ease;
-      will-change: transform, opacity;
-    }
-    .reveal.active{
-      opacity:1;
-      transform:translateY(0);
-    }
+    .reveal{ opacity:0; transform:translateY(34px); transition: 1s ease; will-change: transform, opacity; }
+    .reveal.active{ opacity:1; transform:translateY(0); }
 
     @media (max-width: 980px){
       .hero{ grid-template-columns: 1fr; padding-top:56px; }
@@ -268,114 +206,191 @@
     @media (max-width: 560px){
       .hero h1{ font-size:40px; }
       .feature{ grid-column: span 12; }
-      nav a{ margin-left:8px; }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="topbar">
-      <div class="brand">
-        <div class="brand-badge">🪪</div>
-        <span>UProxi</span>
-      </div>
-      <nav>
-        <a href="index.html">Начало</a>
-        <a href="support.html">Поддръжка</a>
-        <a href="privacy.html">Поверителност</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="reveal">
-      <div class="pill">Създадено за България • Лоялни карти по локация</div>
-      <h1>Картата ти.<br>Точно навреме.</h1>
-      <p>
-        UProxi показва правилната клиентска карта, когато сте близо до магазина —
-        без търсене, без хаос, без излишни стъпки.
-      </p>
-
-      <!-- Keep button EXACT (only replace href) -->
-      <a class="store-btn" href="#" target="_blank" rel="noopener">
-         Download on the App Store
-      </a>
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-badge">🪪</div>
+      <span>UProxi</span>
     </div>
 
-    <div class="hero-image reveal">
-      <!-- MAIN HERO IMAGE -->
-      <img src="assets/Main.PNG" alt="UProxi – Main screen">
-    </div>
-  </section>
+    <nav>
+      <a href="index.html" data-i18n="nav_home">Начало</a>
+      <a href="support.html" data-i18n="nav_support">Поддръжка</a>
+      <a href="privacy.html" data-i18n="nav_privacy">Поверителност</a>
 
-  <!-- FEATURES -->
-  <section class="section">
-    <h2 class="reveal">Какво прави UProxi различно</h2>
-    <p class="sub reveal">
-      Ненатрапчиви подсказки по близост, бърз достъп до карта за сканиране и чист интерфейс.
-      Работи с поддържани обекти в България.
+      <button class="lang-btn" id="langToggle" type="button" aria-label="Toggle language">
+        <span class="lang-dot"></span>
+        <span id="langLabel">EN</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="reveal">
+    <div class="pill" data-i18n="hero_pill">Създадено за България • Лоялни карти по локация</div>
+
+    <h1 data-i18n="hero_title">Картата ти.<br>Точно навреме.</h1>
+
+    <p data-i18n="hero_desc">
+      UProxi показва правилната клиентска карта, когато сте близо до магазина —
+      без търсене, без хаос, без излишни стъпки.
     </p>
 
-    <div class="grid">
-      <div class="feature reveal">
-        <img src="assets/Nearby.PNG" alt="Nearby map">
-        <h3>Наблизо</h3>
-        <p>Вижте обектите около вас и дистанцията до тях – само за брандове, по които имате карта.</p>
-      </div>
+    <!-- Keep button EXACT (only replace href) -->
+    <a class="store-btn" href="#" target="_blank" rel="noopener">
+       Download on the App Store
+    </a>
+  </div>
 
-      <div class="feature reveal">
-        <img src="assets/Bar.PNG" alt="Card barcode">
-        <h3>Готово за сканиране</h3>
-        <p>Един тап и картата е на екрана – barcode/QR, ясно и удобно на каса.</p>
-      </div>
+  <div class="hero-image reveal">
+    <img src="assets/Main.PNG" alt="UProxi – Main screen">
+  </div>
+</section>
 
-      <div class="feature reveal">
-        <img src="assets/Cards.PNG" alt="Cards list">
-        <h3>Подредени карти</h3>
-        <p>Всички карти на едно място, с икони по бранд и бързи действия (копиране, редакция, изтриване).</p>
-      </div>
+<section class="section">
+  <h2 class="reveal" data-i18n="sec_title">Какво прави UProxi различно</h2>
+  <p class="sub reveal" data-i18n="sec_sub">
+    Ненатрапчиви подсказки по близост, бърз достъп до карта за сканиране и чист интерфейс.
+    Работи с поддържани обекти в България.
+  </p>
+
+  <div class="grid">
+    <div class="feature reveal">
+      <img src="assets/Nearby.PNG" alt="Nearby map">
+      <h3 data-i18n="f1_title">Наблизо</h3>
+      <p data-i18n="f1_desc">Вижте обектите около вас и дистанцията до тях – само за брандове, по които имате карта.</p>
     </div>
 
-    <div class="wide">
-      <div class="feature reveal">
-        <img src="assets/Popup.PNG" alt="Proximity notification">
-        <h3>Подсказки в точния момент</h3>
-        <p>Когато сте в радиус, UProxi показва карта или изпраща локална нотификация (при заключен екран).</p>
-      </div>
-
-      <div class="feature reveal">
-        <img src="assets/Adding.PNG" alt="Add card">
-        <h3>Добавяне за секунди</h3>
-        <p>Сканирайте с камера или въведете ръчно. Данните се пазят локално и защитено.</p>
-      </div>
+    <div class="feature reveal">
+      <img src="assets/Bar.PNG" alt="Card barcode">
+      <h3 data-i18n="f2_title">Готово за сканиране</h3>
+      <p data-i18n="f2_desc">Един тап и картата е на екрана – barcode/QR, ясно и удобно на каса.</p>
     </div>
 
-    <div class="cta reveal">
-      <div>
-        <strong>UProxi Pro</strong>
-        <span>Еднократна покупка за неограничен брой карти.</span>
-      </div>
-      <a class="store-btn" href="#" target="_blank" rel="noopener">
-         Download on the App Store
-      </a>
+    <div class="feature reveal">
+      <img src="assets/Cards.PNG" alt="Cards list">
+      <h3 data-i18n="f3_title">Подредени карти</h3>
+      <p data-i18n="f3_desc">Всички карти на едно място, с икони по бранд и бързи действия (копиране, редакция, изтриване).</p>
     </div>
-  </section>
+  </div>
 
-  <footer>
-    © 2026 UProxi
-  </footer>
+  <div class="wide">
+    <div class="feature reveal">
+      <img src="assets/Popup.PNG" alt="Proximity notification">
+      <h3 data-i18n="f4_title">Подсказки в точния момент</h3>
+      <p data-i18n="f4_desc">Когато сте в радиус, UProxi показва карта или изпраща локална нотификация (при заключен екран).</p>
+    </div>
 
-  <script>
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting) entry.target.classList.add('active');
-      });
-    }, { threshold: 0.14 });
+    <div class="feature reveal">
+      <img src="assets/Adding.PNG" alt="Add card">
+      <h3 data-i18n="f5_title">Добавяне за секунди</h3>
+      <p data-i18n="f5_desc">Сканирайте с камера или въведете ръчно. Данните се пазят локално и защитено.</p>
+    </div>
+  </div>
 
-    reveals.forEach(r => observer.observe(r));
-  </script>
+  <div class="cta reveal">
+    <div>
+      <strong data-i18n="cta_title">UProxi Pro</strong>
+      <span data-i18n="cta_desc">Еднократна покупка за неограничен брой карти.</span>
+    </div>
+    <a class="store-btn" href="#" target="_blank" rel="noopener">
+       Download on the App Store
+    </a>
+  </div>
+</section>
+
+<footer>
+  © 2026 UProxi
+</footer>
+
+<script>
+  // ---- i18n ----
+  const I18N = {
+    bg: {
+      nav_home: "Начало",
+      nav_support: "Поддръжка",
+      nav_privacy: "Поверителност",
+      hero_pill: "Създадено за България • Лоялни карти по локация",
+      hero_title: "Картата ти.<br>Точно навреме.",
+      hero_desc: "UProxi показва правилната клиентска карта, когато сте близо до магазина — без търсене, без хаос, без излишни стъпки.",
+      sec_title: "Какво прави UProxi различно",
+      sec_sub: "Ненатрапчиви подсказки по близост, бърз достъп до карта за сканиране и чист интерфейс. Работи с поддържани обекти в България.",
+      f1_title: "Наблизо",
+      f1_desc: "Вижте обектите около вас и дистанцията до тях – само за брандове, по които имате карта.",
+      f2_title: "Готово за сканиране",
+      f2_desc: "Един тап и картата е на екрана – barcode/QR, ясно и удобно на каса.",
+      f3_title: "Подредени карти",
+      f3_desc: "Всички карти на едно място, с икони по бранд и бързи действия (копиране, редакция, изтриване).",
+      f4_title: "Подсказки в точния момент",
+      f4_desc: "Когато сте в радиус, UProxi показва карта или изпраща локална нотификация (при заключен екран).",
+      f5_title: "Добавяне за секунди",
+      f5_desc: "Сканирайте с камера или въведете ръчно. Данните се пазят локално и защитено.",
+      cta_title: "UProxi Pro",
+      cta_desc: "Еднократна покупка за неограничен брой карти."
+    },
+    en: {
+      nav_home: "Home",
+      nav_support: "Support",
+      nav_privacy: "Privacy",
+      hero_pill: "Built for Bulgaria • Location-based loyalty cards",
+      hero_title: "Your card.<br>Right on time.",
+      hero_desc: "UProxi surfaces the right loyalty card when you’re near the store — no searching, no clutter, no extra steps.",
+      sec_title: "What makes UProxi different",
+      sec_sub: "Calm proximity hints, fast access to a scannable card, and a clean interface. Works with supported locations in Bulgaria.",
+      f1_title: "Nearby",
+      f1_desc: "See nearby places and distance — only for brands you have cards for.",
+      f2_title: "Ready to scan",
+      f2_desc: "One tap and your card is on screen — barcode/QR, clear and checkout-ready.",
+      f3_title: "Organized cards",
+      f3_desc: "All cards in one place with brand icons and quick actions (copy, edit, delete).",
+      f4_title: "Timed suggestions",
+      f4_desc: "When you enter a radius, UProxi shows the card or sends a local notification (when locked).",
+      f5_title: "Add in seconds",
+      f5_desc: "Scan with the camera or enter manually. Data stays local and protected.",
+      cta_title: "UProxi Pro",
+      cta_desc: "One-time purchase to unlock unlimited cards."
+    }
+  };
+
+  function setLang(lang) {
+    const dict = I18N[lang] || I18N.bg;
+    document.documentElement.setAttribute("lang", lang);
+    document.documentElement.dataset.lang = lang;
+
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (!dict[key]) return;
+      // allow <br> in titles
+      el.innerHTML = dict[key];
+    });
+
+    const label = document.getElementById("langLabel");
+    if (label) label.textContent = (lang === "bg") ? "EN" : "BG";
+
+    localStorage.setItem("uproxi_lang", lang);
+  }
+
+  document.getElementById("langToggle")?.addEventListener("click", () => {
+    const current = localStorage.getItem("uproxi_lang") || "bg";
+    setLang(current === "bg" ? "en" : "bg");
+  });
+
+  setLang(localStorage.getItem("uproxi_lang") || "bg");
+
+  // ---- reveal animations ----
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) entry.target.classList.add('active');
+    });
+  }, { threshold: 0.14 });
+  reveals.forEach(r => observer.observe(r));
+</script>
 </body>
 </html>
